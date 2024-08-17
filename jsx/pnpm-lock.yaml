@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@electric-sql/pglite':
+        specifier: ^0.2.1
+        version: 0.2.1
+      '@electric-sql/pglite-react':
+        specifier: ^0.2.1
+        version: 0.2.1(@electric-sql/pglite@0.2.1)(react@18.3.1)
       hono:
         specifier: ^4.5.5
         version: 4.5.5
@@ -157,6 +163,15 @@ packages:
   '@babel/types@7.25.2':
     resolution: {integrity: sha512-YTnYtra7W9e6/oAZEHj0bJehPRUlLH9/fbpT5LfB0NhQXyALCRkRs3zH9v07IYhkgpqX6Z78FnuccZr/l4Fs4Q==}
     engines: {node: '>=6.9.0'}
+
+  '@electric-sql/pglite-react@0.2.1':
+    resolution: {integrity: sha512-ZOn6+a6LqWnrgpZff8wwYrMMFO+Gec10SgZKGjzMfI9/AZZRAwI2llZ1LqEezaPmzjAf0SeeU/iBNZF/8TXh/Q==}
+    peerDependencies:
+      '@electric-sql/pglite': ^0.2.1
+      react: ^18.0.0
+
+  '@electric-sql/pglite@0.2.1':
+    resolution: {integrity: sha512-/1kewQ3m9QaCeHR+kGn6edLgPYsIsnBQNuz8iRmp9pGlTkdaf+JMw4DWhsIrN9EuIuu3yCxR7ztNQnG1WqnuHg==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -1508,6 +1523,13 @@ snapshots:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  '@electric-sql/pglite-react@0.2.1(@electric-sql/pglite@0.2.1)(react@18.3.1)':
+    dependencies:
+      '@electric-sql/pglite': 0.2.1
+      react: 18.3.1
+
+  '@electric-sql/pglite@0.2.1': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true

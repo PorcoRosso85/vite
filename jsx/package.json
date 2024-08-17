@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.2.1",
+    "@electric-sql/pglite-react": "^0.2.1",
     "hono": "^4.5.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
