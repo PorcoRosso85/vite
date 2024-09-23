@@ -33,6 +33,9 @@ importers:
       '@biomejs/biome':
         specifier: 1.8.3
         version: 1.8.3
+      '@playwright/experimental-ct-react':
+        specifier: ^1.47.2
+        version: 1.47.2(@types/node@22.5.4)(vite@5.4.1(@types/node@22.5.4))
       '@types/node':
         specifier: ^22.5.4
         version: 22.5.4
@@ -374,6 +377,15 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@playwright/experimental-ct-core@1.47.2':
+    resolution: {integrity: sha512-aTR254jpS7mpuX8Od6vt9zOOmeuZ1PPI8aaT3vxb8lOtRWoq/XsCsnlxu3eWInbDsiYyAEcxPsiGLU9PXgC4LQ==}
+    engines: {node: '>=18'}
+
+  '@playwright/experimental-ct-react@1.47.2':
+    resolution: {integrity: sha512-taWSdPhbdXl6dsC2RmlfGoOy9moeBxMdV7j4n/IEXfzMWu7GshUR9kAESg3QsV03i1vU8kTX5Ko28Yt3ISnk4w==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   '@playwright/test@1.47.2':
     resolution: {integrity: sha512-jTXRsoSPONAs8Za9QEQdyjFn+0ZQFjCiIztAIF6bi1HqhBzG9Ma7g1WotyiGqFSBRZjIEqMdT8RUlbk1QVhzCQ==}
@@ -1186,6 +1198,37 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@playwright/experimental-ct-core@1.47.2(@types/node@22.5.4)':
+    dependencies:
+      playwright: 1.47.2
+      playwright-core: 1.47.2
+      vite: 5.4.1(@types/node@22.5.4)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+
+  '@playwright/experimental-ct-react@1.47.2(@types/node@22.5.4)(vite@5.4.1(@types/node@22.5.4))':
+    dependencies:
+      '@playwright/experimental-ct-core': 1.47.2(@types/node@22.5.4)
+      '@vitejs/plugin-react': 4.3.1(vite@5.4.1(@types/node@22.5.4))
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - vite
 
   '@playwright/test@1.47.2':
     dependencies:
