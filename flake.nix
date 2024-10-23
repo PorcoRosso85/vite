@@ -1,61 +1,35 @@
 {
-  description = "Hello World HTTP server";
-
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  description = "Playwright development environment";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.playwright.url = "github:pietdevries94/playwright-web-flake";
 
-  outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-      # , parent 
-    }:
+  outputs = { self, flake-utils, nixpkgs, playwright }:
     flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-      # parentOutPuts = parent.outputs;
-    in
-    {
-      # nix develop
-      devShell = pkgs.mkShell {
-        buildInputs = [
-          pkgs.nodejs
-          pkgs.nodePackages.pnpm
-        ];
-        shellHook = ''
-        '';
-      };
-
-      # nix run
-      packages = {
-        cowsay = pkgs.cowsay;
-      };
-
-      apps = {
-        # .#hello
-        hello = flake-utils.lib.mkApp {
-          drv = pkgs.hello;
+      let
+        overlay = final: prev: {
+          inherit (playwright.packages.${system}) playwright-test playwright-driver;
         };
-        # .#cowsay
-        cowsay = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.cowsay;
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ overlay ];
         };
-        hello2 = flake-utils.lib.mkApp {
-          drv = pkgs.writeShellScriptBin "hello_from_shell" ''
-            echo "Hello from shell!" 
-          '';
+      in
+      {
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              nodejs_22
+              nodePackages.pnpm
+            ];
+            packages = [
+              pkgs.playwright-test
+            ];
+            shellHook = ''
+              export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+              export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
+            '';
+          };
         };
-        test = flake-utils.lib.mkApp {
-          drv = pkgs.writeShellScriptBin "test" ''
-            cd ./core
-            pnpm vitest .
-            cd ..
-          '';
-        };
-      };
-
-    }
-    );
+      });
 }
-
-
